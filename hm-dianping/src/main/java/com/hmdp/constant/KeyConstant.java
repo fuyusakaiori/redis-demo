@@ -1,4 +1,4 @@
-package com.hmdp.util;
+package com.hmdp.constant;
 
 public class KeyConstant {
 

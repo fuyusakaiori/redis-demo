@@ -6,6 +6,7 @@ import com.hmdp.dto.Response;
 import com.hmdp.entity.UserInfo;
 import com.hmdp.service.IUserInfoService;
 import com.hmdp.service.IUserService;
+import com.hmdp.util.UserHolder;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
@@ -38,7 +39,7 @@ public class UserController {
     }
 
     /**
-     * <h3>用户登录</h3>
+     * <h3>用户登录: 记录用户的信息</h3>
      * @param login 登录参数，包含手机号、验证码；或者手机号、密码
      */
     @PostMapping("/login")
@@ -56,10 +57,12 @@ public class UserController {
         return Response.fail("功能未完成");
     }
 
+    /**
+     * <h3>跳转到登陆页</h3>
+     */
     @GetMapping("/me")
     public Response me(){
-        // TODO 获取当前登录的用户并返回
-        return Response.fail("功能未完成");
+        return Response.ok(UserHolder.get());
     }
 
     @GetMapping("/info/{id}")

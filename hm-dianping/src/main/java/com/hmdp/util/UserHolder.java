@@ -1,19 +1,19 @@
 package com.hmdp.util;
 
-import com.hmdp.dto.UserDTO;
+import com.hmdp.dto.UserResponse;
 
 public class UserHolder {
-    private static final ThreadLocal<UserDTO> tl = new ThreadLocal<>();
+    private static final ThreadLocal<UserResponse> threadLocal = new ThreadLocal<>();
 
-    public static void saveUser(UserDTO user){
-        tl.set(user);
+    public static void set(UserResponse user){
+        threadLocal.set(user);
     }
 
-    public static UserDTO getUser(){
-        return tl.get();
+    public static UserResponse get(){
+        return threadLocal.get();
     }
 
-    public static void removeUser(){
-        tl.remove();
+    public static void remove(){
+        threadLocal.remove();
     }
 }

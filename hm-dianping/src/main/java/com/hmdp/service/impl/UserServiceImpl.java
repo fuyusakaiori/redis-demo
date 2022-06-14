@@ -17,16 +17,14 @@ import javax.servlet.http.HttpSession;
 
 import java.time.LocalDateTime;
 
-import static com.hmdp.util.KeyConstant.*;
-import static com.hmdp.util.MessageConstant.*;
+import static com.hmdp.constant.KeyConstant.*;
+import static com.hmdp.constant.MessageConstant.*;
 
 /**
- * <p>
- * 服务实现类
- * </p>
+ * 《<h3>用户服务</h3>
  *
- * @author 虎哥
- * @since 2021-12-22
+ * @author 冬坂五百里
+ * @since 2022-06-14
  */
 @Slf4j
 @Service
