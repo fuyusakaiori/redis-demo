@@ -8,6 +8,7 @@ import com.hmdp.dto.UserResponse;
 import com.hmdp.entity.User;
 import com.hmdp.util.UserHolder;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 
@@ -27,29 +28,15 @@ import static com.hmdp.constant.ResponseCode.*;
 @Component
 public class LoginInterceptor implements HandlerInterceptor {
 
-    @Resource
-    private RedisClient redisClient;
-
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        // 1. 获取 token
-        String token = request.getHeader("authorization");
-        log.debug("authorization token: {}", token);
-        if(StrUtil.isBlank(token)){
+        UserResponse user = UserHolder.get();
+        log.debug("login interceptor user: {}", user);
+        if(user == null){
+            log.debug("用户没有权限");
             response.setStatus(UNAUTHORIZED.getCode());
             return false;
         }
-        // 2. 取出 redis 中的用户
-        Map<Object, Object> fields = redisClient.hgetAll(LOGIN_USER_KEY + token);
-        // 3. 如果用户不存在就拦截
-        if (MapUtil.isEmpty(fields)) {
-            response.setStatus(UNAUTHORIZED.getCode());
-            return false;
-        }
-        // 4. 如果用户存在就存储在 ThreadLocal 中
-        UserResponse user = BeanUtil.fillBeanWithMap(fields, new UserResponse(), false);
-        UserHolder.set(user);
-        response.setStatus(SUCCESS.getCode());
         return true;
     }
 
