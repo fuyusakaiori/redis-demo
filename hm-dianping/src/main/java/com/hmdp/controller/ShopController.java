@@ -33,7 +33,7 @@ public class ShopController {
      */
     @GetMapping("/{id}")
     public Response queryShopById(@PathVariable("id") Long id) {
-        return Response.ok(shopService.getById(id));
+        return shopService.getShopById(id);
     }
 
     /**

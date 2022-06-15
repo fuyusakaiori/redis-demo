@@ -32,7 +32,7 @@ public class RedisClient {
         template.opsForValue().set(key, value, time);
     }
 
-    public void hset(String key, Map<String, Object> fields){
+    public void hset(String key, Map<?, ?> fields){
         template.opsForHash().putAll(key, fields);
     }
 

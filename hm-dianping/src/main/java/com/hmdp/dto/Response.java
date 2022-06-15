@@ -9,8 +9,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Response
-{
+public class Response {
     private Boolean success;
     private String errorMsg;
     private Object data;

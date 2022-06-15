@@ -1,5 +1,6 @@
 package com.hmdp.service;
 
+import com.hmdp.dto.Response;
 import com.hmdp.entity.Shop;
 import com.baomidou.mybatisplus.extension.service.IService;
 
@@ -12,5 +13,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @since 2021-12-22
  */
 public interface IShopService extends IService<Shop> {
-
+     Response getShopById(Long id);
 }
