@@ -9,6 +9,8 @@ import javax.annotation.Resource;
 import java.time.Duration;
 import java.util.Map;
 
+import static com.hmdp.constant.KeyConstant.LOCK_CACHE_SHOP_VALUE;
+
 /**
  * <h3>Redis 工具类</h3>
  * TODO AOP 打印日志
@@ -48,5 +50,12 @@ public class RedisClient {
         return template.opsForHash().entries(key);
     }
 
+    public boolean del(String key){
+        return BooleanUtil.isTrue(template.delete(key));
+    }
 
+    public boolean setnx(String key){
+        return BooleanUtil.isTrue(template.opsForValue().setIfAbsent(
+                key, LOCK_CACHE_SHOP_VALUE, Duration.ofSeconds(10)));
+    }
 }

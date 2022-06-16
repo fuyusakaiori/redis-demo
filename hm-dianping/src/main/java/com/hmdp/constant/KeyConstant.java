@@ -11,5 +11,9 @@ public class KeyConstant {
     public static final String CACHE_SHOP_KEY = "cache:shop:info";
     // 商铺类型缓存 key
     public static final String CACHE_SHOP_TYPE_KEY = "cache:shop:type";
+    // 分布式锁 Key
+    public static final String LOCK_CACHE_SHOP_INFO_KEY = "lock:shop:info:key";
+    // 分布式锁 Value
+    public static final String LOCK_CACHE_SHOP_VALUE = "lock_shop_info_value";
 
 }
